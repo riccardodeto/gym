@@ -5,8 +5,8 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0c100f",
-  "theme_color": "#101513",
+  "background_color": "#f6f9ff",
+  "theme_color": "#f6f9ff",
   "description": "Schede, allenamenti, progressi e carichi suggeriti, anche offline.",
   "lang": "it",
   "icons": [

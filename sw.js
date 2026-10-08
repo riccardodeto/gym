@@ -1,7 +1,7 @@
-const CACHE = 'forge-gym-static-v1';
+const CACHE = 'forge-gym-static-v2';
 const ROOT = new URL('./', self.location.href);
 const STATIC = [
-  './','./index.html','./styles.css','./seed.js','./core.js','./app.js','./manifest.webmanifest',
+  './','./index.html','./styles.css','./theme.css','./seed.js','./core.js','./app.js','./manifest.webmanifest',
   './assets/icons/icon-192.png','./assets/icons/icon-512.png','./assets/icons/apple-touch-icon.png',
   ...['treadmill','sphinx','chest-machine','pulldown','leg-press','shoulder-press','triceps-cable','biceps-cable','standing-curl','leg-extension','crunch','chest-dumbbells','lat-machine','hack-squat','lateral-raise','french-press','ez-curl','seated-curl'].map(n => './assets/exercises/'+n+'.webp')
 ];

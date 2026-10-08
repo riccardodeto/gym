@@ -23,7 +23,7 @@ Negli esercizi con due manubri il peso registrato è riferito **al singolo manub
 ## Pubblica su GitHub Pages
 
 1. Crea un repository su **https://github.com/new**, per esempio `forge-gym`. Può essere pubblico (GitHub Pages per i repository gratuiti). Non inserire nel repository i tuoi backup degli allenamenti.
-2. Apri la cartella `forge-gym` di questo progetto e **carica tutti i suoi file e cartelle direttamente nella radice** del repository: `index.html`, `styles.css`, `app.js`, `core.js`, `seed.js`, `sw.js`, `manifest.webmanifest`, `assets/`, `.nojekyll` e `README.md`.
+2. Estrai lo ZIP e **carica tutti i file e cartelle direttamente nella radice** del repository: `index.html`, `styles.css`, `theme.css`, `app.js`, `core.js`, `seed.js`, `sw.js`, `manifest.webmanifest`, `assets/`, `.nojekyll` e `README.md`.
 3. Su GitHub entra in **Settings → Pages → Build and deployment → Deploy from a branch**. Scegli `main`, cartella `/ (root)` e salva.
 4. Aspetta che GitHub pubblichi il sito. Di solito l'indirizzo è:
 
@@ -60,7 +60,8 @@ L'algoritmo usa una semplice regola di doppia progressione, non un modello medic
 ```text
 forge-gym/
 ├── index.html             # Entry point PWA
-├── styles.css             # Design responsive iPhone
+├── styles.css             # Stili struttura base
+├── theme.css              # Tema Azure chiaro/scuro e rifiniture iPhone
 ├── app.js                 # Interfaccia, schede, allenamenti, backup
 ├── seed.js                # Catalogo e due giornate originali
 ├── core.js                # Calcoli, storico e progressione
@@ -74,4 +75,20 @@ forge-gym/
 
 ## Miglioramenti possibili
 
-Per un'evoluzione futura: sincronizzazione crittografata tra dispositivi con account, timer personalizzabile, RPE/RIR, grafici stimati di 1RM, impostazioni per la progressione per esercizio e calendario delle sedute. Il presente progetto evita volutamente servizi a pagamento e complessità non necessarie alla versione iniziale.
+Per un'evoluzione futura: sincronizzazione crittografata tra dispositivi con account, timer personalizzabile, RPE/RIR, grafici stimati di 1RM, impostazioni per la progressione per esercizio. Il calendario modificabile per le singole sedute è già incluso nella versione 2.0. Il presente progetto evita volutamente servizi a pagamento e complessità non necessarie alla versione iniziale.
+
+
+## Novità — FORGE GYM 2.0 (tema Azure)
+
+- Tema moderno **bianco/azzurro** e **blu notte/azzurro**, con selezione in Impostazioni: Automatico, Chiaro, Scuro. Un tocco sul pulsante luna/sole nella testata passa direttamente al tema opposto.
+- La **data della sessione** si può modificare sia durante l'allenamento che aprendo una seduta già salvata nello Storico. Grafici settimanali, diario e progressi rispettano la data scelta.
+- Doppio tap: i comandi usano `touch-action: manipulation` per evitare l'ingrandimento involontario in Safari senza disabilitare la normale funzione di zoom con due dita. Gli input hanno dimensione font >= 16px per evitare zoom automatici alla selezione su iPhone.
+- I **dati sono compatibili con la prima versione**: resta invariata la chiave `localStorage` (`forge-gym-data-v1`) e i backup JSON precedenti possono essere importati.
+- Nuove icone blu della PWA e nuova cache offline `forge-gym-static-v2` per distribuire aggiornamenti agli iPhone con app già installata.
+
+### Aggiornamento GitHub Pages
+
+1. Per sicurezza, esporta un backup dall'app prima di aggiornare.
+2. Estrai lo ZIP della versione 2. **Il suo contenuto (non lo ZIP) va nella directory principale del repository**, accanto a `index.html`. Se usi VS Code su Mac, copia tutti i nuovi file e la cartella `assets` nella cartella locale del repository, accettando la sostituzione degli omonimi, e fai `Commit` e `Push/Sync`.
+3. GitHub Pages deve avere come origine `main` + `/ (root)`. Attendi il completamento del deploy in Actions, quindi chiudi e riapri la web app su iPhone. Se non si aggiorna, riapri anche l'URL su Safari online: il service worker scaricherà la nuova cache.
+4. I file GitHub non contengono dati di allenamento, che rimangono nel browser in uso. Non cancellare i dati del sito Safari prima di aver esportato un backup.
